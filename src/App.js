@@ -1,11 +1,11 @@
+import { Carousel } from 'react-bootstrap';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Layout from './Components/Layout/Layout';
-
-import { Carousel } from 'react-bootstrap';
 import Products from './Components/Module/Products';
 import About from './Components/Pages/About';
 import Add from './Components/Pages/Admin/Category/Add';
+import List from './Components/Pages/Admin/Category/List';
 import Home from './Components/Pages/Home';
 
 function App() {
@@ -23,7 +23,9 @@ function App() {
             <Route path="/layout" element={<Layout/>}/>
             <Route path="/carousel" element={<Carousel/>}/>
             <Route path="/product" element={<Products/>}/>
-            <Route path="/add" element={<Add/>}/>
+            <Route path="/admin/category/add" element={<Add/>}/>
+            <Route path="/admin/category/list" element={<List/>}/>
+
         
        
           </Route>

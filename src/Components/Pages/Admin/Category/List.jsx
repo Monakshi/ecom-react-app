@@ -1,17 +1,29 @@
 import React, { useEffect, useState } from 'react';
+// import { Alert, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const List = ({title}) => {
-    const [items,setItems] = useState([]);
+    const [items,setItems ] = useState([]);
+    const [reload, setReload] = useState(false);
+
     useEffect(() => {
         fetch("http://localhost:4001/api/category")
         .then((res) => res.json())
         .then((data) =>setItems(data.reverse()))
         .catch((error)=> console.log(error));
-},[]);
-const deleteData=()=> {
+},[reload]);
 
-}
+
+const handleDelete=(id)=> { 
+ 
+    fetch(`http://localhost:4001/api/category/${id}`,
+        {method:"delete",})
+        .then((res) => res.json())
+        .then((data) =>{ setReload(!reload)
+        console.log(data);})
+    .catch((error) => console.log(error))
+};
+
 
   return (
     <div>
@@ -31,7 +43,8 @@ const deleteData=()=> {
                     <td>
                         <img alt=""  src={item.thumbnail} height="100"/>
                     </td>
-                    <td><button onClick={deleteData}>Delete</button> </td>
+                    <td><button onClick={handleDelete(item._id)}>Delete</button> {" "}
+                    </td>
 
                 </tr>
             ))}

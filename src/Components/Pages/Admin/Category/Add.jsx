@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const Add = () => {
-  const [formData, setFormData] = useState({
+    const navigate = useNavigate();
+
+
+    const [formData, setFormData] = useState({
     title: "",
     description: "",
     thumbnail: "",
@@ -37,13 +42,21 @@ const Add = () => {
       })
         .then((res) => res.json())
         .then((data) => {
+          navigate("/admin/category/list");
           console.log(data);
         })
         .catch((error) => {
           console.log(error);
         });
     }
+
   };
+    // navigate({
+    //     pathname: '/admin/category/product',
+        
+    //   });
+    
+
 
   return (
     <div className="cat-from">
@@ -67,4 +80,4 @@ const Add = () => {
     </div>
   );
 };
-export default Add;
+export default Add;
